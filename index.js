@@ -52,7 +52,7 @@ function AddItemToValue(map, key, value) {
 
 function BuildDictionary() {
     var lineReader = require('readline').createInterface({
-        input: require('fs').createReadStream('words_concise.txt')
+        input: require('fs').createReadStream('data/words_concise.txt')
     });
 
     lineReader.on('line', function(line) {
