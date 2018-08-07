@@ -1,14 +1,14 @@
 const express = require('express');
-const mongoose = require('mongoose');
-const Submission = require('./api/models/SubmissionModel');
+//const mongoose = require('mongoose');
+//const Submission = require('./api/models/SubmissionModel');
 const app = express();
 const bodyParser = require('body-parser');
 
-mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/JumbleSubmissions');
+//mongoose.Promise = global.Promise;
+//mongoose.connect('mongodb://localhost/JumbleSubmissions');
 
-var routes = require('./api/routes/SubmissionRoute');
-routes(app);
+//var routes = require('./api/routes/SubmissionRoute');
+//routes(app);
 
 var dictionary = new Map();
 
@@ -21,6 +21,7 @@ app.get('/', function (req, res) {
 });
 
 app.post('/', function(req, res) {
+    //https://www.npmjs.com/package/mongoose-sanitizer
     //Submission.create({Text: req.body.jumbledText, SubmissionDate: Date.now()});
 
     var matchingWords = [];
