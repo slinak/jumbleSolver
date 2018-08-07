@@ -1,6 +1,14 @@
 const express = require('express');
+const mongoose = require('mongoose');
+const Submission = require('./api/models/SubmissionModel');
 const app = express();
 const bodyParser = require('body-parser');
+
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost/JumbleSubmissions');
+
+var routes = require('./api/routes/SubmissionRoute');
+routes(app);
 
 var dictionary = new Map();
 
@@ -34,7 +42,6 @@ app.post('/', function(req, res) {
     });
 
     
-
     res.render('index', {inputText: inputString, data: returnBlob, error: null});
 });
 
