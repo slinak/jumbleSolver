@@ -1,6 +1,7 @@
-.OutputWrapper {
-    font-size:20px;
-    
+.OutputWrapper > span,
+.OutputWrapper > p,
+.MatchLabel{
+    font-size:28px;
 }
 
 .MatchWrapper {
@@ -20,5 +21,30 @@ body{
     opacity: .50;
     border: 1px solid white;
     text-decoration:line-through;
+}
 
+.Container {
+    width:75%;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.JumbledTextInput {
+    width: 40%;
+    height:40px;
+    font-size:24px;
+}
+
+.JumbledTextButton {
+    font-size:24px;
+    height:40px;
+}
+
+.FormWrapper {
+    padding:5px;
+    margin:10px;
+    margin-left:auto;
+    margin-right:auto;
+    width:60%;
+    text-align:center;
 }

@@ -6,29 +6,33 @@
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
     <script>
-      function hideSelectedWord (element) {
-        element.classList.add("Checked");
+      function toggleCheckedWord (element) {
+        if(element.classList.contains("Checked"))
+          element.classList.remove("Checked");
+        else
+          element.classList.add("Checked");
       }
     </script>
   </head>
   <body>
-    <div class="container">
+    <div class="Container">
       <fieldset>
-        <form action="/" method="post">
-          <input name="jumbledText" type="text" class="ghost-input" placeholder="Text" required>
-          <input type="submit" class="ghost-button" value="Unscramble">
+        <form action="/" method="post" class="FormWrapper">
+          <input name="jumbledText" type="text" class="JumbledTextInput" placeholder="Text" required>
+          <input type="submit" class="JumbledTextButton" value="Unscramble">
         </form>
         <div class="OutputWrapper">
           <% if(typeof inputText != "undefined") {%>
             <p>Input Text: <%= inputText %> </p>
+            <p>Click on a word to cross it off</p>
           <%}%>
           <hr />
 
           <% if(typeof data != "undefined") { 
             for(var matches in data) { %>
-              <p>Length: <%= matches %></p>
+              <p class="MatchLabel">Length: <%= matches %></p>
               <% Array.prototype.forEach.call(data[matches].list, function(l) { %>
-                <span onclick="hideSelectedWord(this)" class="MatchWrapper"> <%= l %></span>
+                <span onclick="toggleCheckedWord(this)" class="MatchWrapper"> <%= l %></span>
               <% }) %>
           <% }} %>
       </div>

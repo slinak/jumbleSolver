@@ -33,6 +33,8 @@ app.post('/', function(req, res) {
         AddItemToValue(returnBlob, w.length, w);
     });
 
+    
+
     res.render('index', {inputText: inputString, data: returnBlob, error: null});
 });
 
