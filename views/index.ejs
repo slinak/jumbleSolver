@@ -5,6 +5,11 @@
     <title>Unscrambler</title>
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+    <script>
+      function hideSelectedWord (element) {
+        element.classList.add("Checked");
+      }
+    </script>
   </head>
   <body>
     <div class="container">
@@ -22,7 +27,9 @@
           <% if(typeof data != "undefined") { 
             for(var matches in data) { %>
               <p>Length: <%= matches %></p>
-              <span class="MatchWrapper"> <%= data[matches].list %></span>
+              <% Array.prototype.forEach.call(data[matches].list, function(l) { %>
+                <span onclick="hideSelectedWord(this)" class="MatchWrapper"> <%= l %></span>
+              <% }) %>
           <% }} %>
       </div>
       </fieldset>
