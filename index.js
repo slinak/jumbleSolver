@@ -21,6 +21,8 @@ app.get('/', function (req, res) {
 });
 
 app.post('/', function(req, res) {
+    //Submission.create({Text: req.body.jumbledText, SubmissionDate: Date.now()});
+
     var matchingWords = [];
     var returnBlob = new Map();
     var inputString = req.body.jumbledText.toLowerCase();
@@ -32,17 +34,18 @@ app.post('/', function(req, res) {
 
         if(dictionary[sortedPermutation] !== undefined && sortedPermutation.length > 2) 
             Array.prototype.forEach.call(dictionary[sortedPermutation].list, function(fw) {
-                if(!matchingWords.includes(fw))
+                //should clean up, don't really need matchingWords
+                if(!matchingWords.includes(fw)) {
                     matchingWords.push(fw);
+                    AddItemToValue(returnBlob, fw.length, fw);
+                }
             });
     });
 
-    Array.prototype.forEach.call(matchingWords, function(w) {
-        AddItemToValue(returnBlob, w.length, w);
-    });
-
-    
-    res.render('index', {inputText: inputString, data: returnBlob, error: null});
+    if(matchingWords.length > 0)
+        res.render('index', {inputText: inputString, data: returnBlob, error: null});
+    else
+        res.render('index', {inputText: inputString, data: null, error: "No matches found"});
 });
 
 app.listen(3000, function () {

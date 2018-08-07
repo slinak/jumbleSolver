@@ -24,17 +24,19 @@
         <div class="OutputWrapper">
           <% if(typeof inputText != "undefined") {%>
             <p>Input Text: <%= inputText %> </p>
-            <p>Click on a word to cross it off</p>
           <%}%>
           <hr />
-
-          <% if(typeof data != "undefined") { 
-            for(var matches in data) { %>
-              <p class="MatchLabel">Length: <%= matches %></p>
-              <% Array.prototype.forEach.call(data[matches].list, function(l) { %>
-                <span onclick="toggleCheckedWord(this)" class="MatchWrapper"> <%= l %></span>
-              <% }) %>
-          <% }} %>
+          <% if(typeof data != "undefined") {
+            if(error){ %>
+              <p>No Matches Found</p>
+            <%} else { %>
+              <p>Click on a word to cross it off</p>
+              <% for(var matches in data) { %>
+                <p class="MatchLabel">Length: <%= matches %></p>
+                <% Array.prototype.forEach.call(data[matches].list, function(l) { %>
+                  <span onclick="toggleCheckedWord(this)" class="MatchWrapper"> <%= l %></span>
+                <% }) %>
+            <% }}} %>
       </div>
       </fieldset>
     </div>
