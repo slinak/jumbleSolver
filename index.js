@@ -36,7 +36,8 @@ app.post('/', function(req, res) {
         if(dictionary[sortedPermutation] !== undefined && sortedPermutation.length > 2) 
             Array.prototype.forEach.call(dictionary[sortedPermutation].list, function(fw) {
                 //should clean up, don't really need matchingWords
-                if(!matchingWords.includes(fw)) {
+                //if(!matchingWords.includes(fw)) {
+                if(matchingWords.indexOf(fw) == -1) {
                     matchingWords.push(fw);
                     AddItemToValue(returnBlob, fw.length, fw);
                 }
