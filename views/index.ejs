@@ -24,7 +24,10 @@
   <body>
     <div class="Container">
       <fieldset>
-        <form action="/" method="post" class="FormWrapper">
+        <form action="/newgame" method="post"> 
+          <input type="submit" class="JumbledTextButton" value="New Game">
+        </form>
+        <form action="/submit" method="post" class="FormWrapper">
           <input name="jumbledText" type="text" class="JumbledTextInput" placeholder="Text" required>
           <input type="submit" class="JumbledTextButton" value="Unscramble">
         </form>

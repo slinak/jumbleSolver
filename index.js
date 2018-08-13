@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const port = 3000;
 const Submission = require('./api/models/SubmissionModel');
 const app = express();
 const bodyParser = require('body-parser');
@@ -21,7 +22,18 @@ app.get('/', function (req, res) {
     res.render('index');
 });
 
-app.post('/', function(req, res) {
+/*
+app.get('/newgame', function (req, res) {
+
+});
+*/
+
+app.post('/newgame', function(req, res) {
+    console.log("new game selected");
+    console.log(GetRandomWordFromDictionary());
+});
+
+app.post('/submit', function(req, res) {
     //https://www.npmjs.com/package/mongoose-sanitizer
     Submission.create({Text: sanitize(req.body.jumbledText), SubmissionDate: Date.now()});
 
@@ -51,10 +63,15 @@ app.post('/', function(req, res) {
         res.render('index', {inputText: inputString, data: null, error: "No matches found"});
 });
 
-app.listen(3000, function () {
-  console.log('Unjumbler listening on port 3000!');
+app.listen(port, function () {
+  console.log('Unjumbler listening on port ' + port);
   BuildDictionary();
 });
+
+function GetRandomWordFromDictionary() {
+    var keys = Object.keys(dictionary);
+    return dictionary[keys[ keys.length * Math.random() << 0]];
+}
 
 function AddItemToValue(map, key, value) {
     if(map[key] !== undefined) {
