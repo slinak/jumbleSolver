@@ -22,15 +22,16 @@ app.get('/', function (req, res) {
     res.render('index');
 });
 
-/*
 app.get('/newgame', function (req, res) {
-
+    var gameStartText = GetRandomWordFromDictionary().list[0];
+    console.log(gameStartText);
+    res.render('game', {gameText: gameStartText, error: null});
 });
-*/
 
 app.post('/newgame', function(req, res) {
-    console.log("new game selected");
-    console.log(GetRandomWordFromDictionary());
+    var gameStartText = GetRandomWordFromDictionary().list[0];
+    console.log(gameStartText);
+    res.render('game', {gameText: gameStartText, error: null});
 });
 
 app.post('/submit', function(req, res) {
